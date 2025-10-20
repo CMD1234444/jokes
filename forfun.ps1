@@ -24,15 +24,15 @@ Print "`nWhat's your name? "
 $name = Read-Host
 Print "Hello, $name! Welcome to my script."
 Print "`n type 'quit' to exit, or press Enter to keep the jokes rolling: "
-Write Host `n
+Write-Host "`n"
 $jokesSeen = @()
 do {
-	$jokes = Invoke-RestMethod -Uri "https://icanhazdadjoke.com" -Headers @{Accept="text/plain"}
+	$joke = Invoke-RestMethod -Uri "https://icanhazdadjoke.com" -Headers @{Accept="text/plain"}
 	while ($jokesSeen -contains $joke) {
         $joke = Invoke-RestMethod -Uri "https://icanhazdadjoke.com" -Headers @{Accept="text/plain"}
     }
     $jokesSeen += $joke
-	Print $jokes
+	Print $joke
 	$again = Read-Host
 } while ($again -ne "quit")
 Print "`nGoodbye, $name! Have a great day!"
